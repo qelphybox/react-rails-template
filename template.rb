@@ -3,6 +3,7 @@ require 'shellwords'
 
 def apply_template!
   add_template_repository_to_source_path
+  remove_unwanted_gems
   add_gems
   setup_generators
   setup_databaseyml
@@ -126,7 +127,6 @@ def add_gems
   gem 'fast_jsonapi'
   gem 'rswag-api'
   gem 'rswag-ui'
-  gem 'haml-rails'
   gem 'rails_12factor'
   gem 'tzinfo-data'
 
@@ -176,6 +176,13 @@ def setup_databaseyml
       <<: *default
       database: #{app_name}_test
   CODE
+end
+
+# TODO: bad design, better will be make own Gemfile template
+def remove_unwanted_gems
+  %w(coffee-rails jbuilder tzinfo-data byebug).each do |unwanted_gem|
+    gsub_file('Gemfile', /gem '#{unwanted_gem}'.*\n/, '')
+  end
 end
 
 # Add this template directory to source_paths so that Thor actions like
