@@ -1,4 +1,4 @@
-# React Rails template
+# [WIP] React Rails template
 
 ![Skip Rails](http://i.imgur.com/lgZwmU2.png)
 
