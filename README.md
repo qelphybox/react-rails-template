@@ -14,7 +14,6 @@ rails new myapp \
   --skip-coffee \
   --skip-turbolinks \
   --skip-javascript \
-  --skip-javascript \
   --skip-active-storage \
   --skip-action-mailbox \
   --skip-sprockets \
