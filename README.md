@@ -8,16 +8,19 @@
 rails new myapp \
   --api \
   --no-rc \
-  --database=postgresql \
-  --skip-action-cable \
-  --skip-spring \
-  --skip-coffee \
-  --skip-turbolinks \
-  --skip-javascript \
-  --skip-active-storage \
+  --skip-git \
   --skip-action-mailbox \
+  --skip-action-text \
+  --skip-active-storage \
+  --skip-action-cable \
   --skip-sprockets \
+  --skip-spring \
+  --skip-listen \
+  --skip-javascript \
+  --skip-turbolinks \
   --skip-test \
+  --skip-system-test \
+  --skip-webpack-install \
   --template=https://raw.githubusercontent.com/qelphybox/react-rails-template/master/template.rb \
   \
 ```
