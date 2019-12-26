@@ -23,7 +23,7 @@ def apply_template!
 
     template 'docker-compose.yml'
     template './Makefile.tt'
-    copy_file 'gitignore', '.gitignore', force: true
+    copy_file 'gitignore', '.gitignore'
 
     # git init, 'first commit'
     git :init
