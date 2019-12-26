@@ -6,7 +6,7 @@
 
 ```bash
 rails new myapp \
-  --database=postgresql
+  --database=postgresql \
   --api \
   --no-rc \
   --skip-git \
