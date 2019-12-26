@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12-alpine
+    environment:
+      PGPASSWORD_SUPERUSER: postgres
+      PGPASSWORD_ADMIN: postgres
+      PGPASSWORD_STANDBY: postgres
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    command: ash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0"
+    depends_on:
+      - db
+    ports:
+      - "8080:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres@db/<%= app_name %>_development
+      REDIS_URL: redis://redis:6379/
+      RAILS_SERVE_STATIC_FILES: "true"
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_ENV: development
+      HOST: 'http://localhost:8080'
+    volumes:
+      - ./backend:/app

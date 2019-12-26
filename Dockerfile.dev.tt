@@ -1,0 +1,14 @@
+FROM ruby:<%= RUBY_VERSION %>-alpine
+
+ENV PROJECT_ROOT=/app
+WORKDIR $PROJECT_ROOT
+
+RUN apk update && \
+    apk add -u --no-cache --progress \
+    build-base cmake less \
+    postgresql-dev postgresql-client openssh git make
+
+RUN gem install bundler
+
+COPY Gemfile* $PROJECT_ROOT/
+RUN bundle check || BUNDLE_FORCE_RUBY_PLATFORM=1 bundle install --retry 4
