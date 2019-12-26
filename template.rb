@@ -23,7 +23,7 @@ def apply_template!
 
     template 'docker-compose.yml'
     template './Makefile.tt'
-    copy_file 'gitignore', '.gitignore'
+    copy_file 'gitignore_core', '.gitignore'
 
     # git init, 'first commit'
     git :init
@@ -97,7 +97,7 @@ def add_template_repository_to_source_path
       Dir.chdir(tempdir) { git checkout: branch }
     end
   else
-    source_paths.unshift(File.dirname(__FILE__))
+    source_paths.unshift(__dir__)
   end
 end
 
