@@ -25,7 +25,7 @@ def apply_template!
     template './Makefile.tt'
     copy_file 'gitignore', '.gitignore', force: true
 
-    git init, first commit
+    # git init, 'first commit'
     git :init
     git add: '-- .'
     git commit: "-a -m 'Initial commit'"
@@ -73,7 +73,7 @@ end
 
 # TODO: bad design, will be better to make own Gemfile template
 def remove_unwanted_gems
-  %w(coffee-rails jbuilder tzinfo-data byebug).each do |unwanted_gem|
+  %w[coffee-rails jbuilder tzinfo-data].each do |unwanted_gem|
     gsub_file('Gemfile', /gem '#{unwanted_gem}'.*\n/, '')
   end
 end
