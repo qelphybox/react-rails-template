@@ -12,6 +12,7 @@ def apply_template!
     # setup rspec
     run 'bundle exec rspec --init'
     copy_file 'spec_rails_helper.rb', 'spec/rails_helper.rb'
+    generate 'rswag:install'
     template 'Dockerfile.dev.tt'
 
     # prepare project structure

@@ -13,9 +13,9 @@ app-backend-console:
 	docker-compose run --rm backend bundle exec rails c
 
 app-db-psql:
-	docker-compose run --rm core psql -d <%= app_name %>_development -U postgres -W -h db
+	docker-compose run --rm core psql -d <%= app_name.underscore %>_development -U postgres -W -h db
 
-app-db-prepare: app-db-create app-db-restore app-db-migrate
+app-db-prepare: app-db-create app-db-migrate
 
 app-db-create:
 	docker-compose run --rm backend rails db:create RAILS_ENV=development
@@ -34,12 +34,12 @@ app-db-drop:
 
 TEST_PATH := $(or $(TEST_PATH),spec/)
 test:
-	docker-compose run -e DATABASE_URL=postgresql://postgres@db/<%= app_name %>_test -e RAILS_ENV=test--rm backend rspec $(TEST_PATH)
+	docker-compose run -e DATABASE_URL=postgresql://postgres@db/<%= app_name.underscore %>_test -e RAILS_ENV=test--rm backend rspec $(TEST_PATH)
 
 test-db-prepare:
-	docker-compose run -e DATABASE_URL=postgresql://postgres@db/<%= app_name %>_test -e RAILS_ENV=test --rm backend rails db:test:prepare
+	docker-compose run -e DATABASE_URL=postgresql://postgres@db/<%= app_name.underscore %>_test -e RAILS_ENV=test --rm backend rails db:test:prepare
 
 test-db-drop:
-	docker-compose run -e DATABASE_URL=postgresql://postgres@db/<%= app_name %>_test -e RAILS_ENV=test --rm backend rails db:drop
+	docker-compose run -e DATABASE_URL=postgresql://postgres@db/<%= app_name.underscore %>_test -e RAILS_ENV=test --rm backend rails db:drop
 
 .PHONY: app-up test
