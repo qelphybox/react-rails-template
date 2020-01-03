@@ -60,7 +60,6 @@ def setup_generators
       g.helper            false
       g.javascript_engine :js
       g.orm              :active_record
-      g.template_engine  :haml
       g.test_framework   :rspec
       g.stylesheets      false
     end
